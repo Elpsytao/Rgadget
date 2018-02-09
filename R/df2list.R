@@ -3,7 +3,7 @@
 #' Two catagorized columns will be names of the list and names of each elements in list, values will be values in each element
 #' 
 #' Things to be done:
-#' 1. Deal with factor type input
+#' 1. Deal with NA
 #' 2. Collapse/Collapse on certain level
 #' 3. Recursive list tree creat
 
@@ -11,8 +11,9 @@ listby2col <- function(x, formula = ~., fun){
   outer <- formula[[3]][[2]]
   inner <- formula[[3]][[3]]
   factor <- formula[[2]]
-  tapply(eval(factor, envir = x), 
+  temp_tbl <- tapply(eval(factor, envir = x), 
          list(eval(outer, envir = x), eval(inner, envir = x)),fun)
+  
 }
 
 
