@@ -13,7 +13,12 @@ listby2col <- function(x, formula = ~., fun){
   factor <- formula[[2]]
   temp_tbl <- tapply(eval(factor, envir = x), 
          list(eval(outer, envir = x), eval(inner, envir = x)),fun)
-  
+  outer <- unique(as.character(eval(outer, envir = x)))
+  out_list <- list()
+  for(i in seq_along(outer)){
+    out_list[[outer[i]]] <- setNames(unlist(out[outer[i],], use.names = F), rep(names(out[outer[i],]), lengths(out[outer[i],])))
+  }
+  out_list
 }
 
 
