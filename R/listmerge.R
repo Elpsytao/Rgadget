@@ -2,10 +2,10 @@
 #' 
 #' Two catagorized columns will be names of the list and names of each elements in list, values will be values in each element
 #' 
-#' listby2col:
-#' 1. Deal with NA: add parameter to control whether NA shown in output
-#' 2. Change input type, using a pairlist instead of formula
-#' 3. Recursive list tree creat
+#' listmerge:
+#' 1. Deal with collapse function
+#' 2. Deal with names match
+#' 3. Keep left/right/both
 #' 
 
 
