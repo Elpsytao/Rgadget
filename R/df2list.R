@@ -2,10 +2,11 @@
 #' 
 #' Two catagorized columns will be names of the list and names of each elements in list, values will be values in each element
 #' 
-#' Things to be done:
-#' 1. Deal with NA
-#' 2. Collapse/Collapse on certain level
+#' listby2col:
+#' 1. Deal with NA: add parameter to control whether NA shown in output
+#' 2. Change input type, using a pairlist instead of formula
 #' 3. Recursive list tree creat
+#' 
 
 listby2col <- function(x, formula = ~., fun){
   outer <- formula[[3]][[2]]
@@ -16,7 +17,9 @@ listby2col <- function(x, formula = ~., fun){
   outer <- unique(as.character(eval(outer, envir = x)))
   out_list <- list()
   for(i in seq_along(outer)){
-    out_list[[outer[i]]] <- setNames(unlist(out[outer[i],], use.names = F), rep(names(out[outer[i],]), lengths(out[outer[i],])))
+    sublists <-  setNames(unlist(temp_tbl[outer[i],], use.names = F), 
+                          rep(names(temp_tbl[outer[i],]), lengths(temp_tbl[outer[i],])))
+    out_list[[outer[i]]] <- sublists[!is.na(sublists)]
   }
   out_list
 }
@@ -24,14 +27,6 @@ listby2col <- function(x, formula = ~., fun){
 
 
 
-test_df <- data.frame(cola = rep(c('a','b','c'),c(2,3,5)),
-                      colb = c('Aron','Adam','Bob','Blunt','Bob','Chris','Curry','Catherine','Curry','Cantebury'),
-                      colc = c(1,2,3,4,5,6,7,NA,9,10),
-                      cold = letters[1:10])
-
-
-out <- tapply(test_df$colc, list(test_df$cola, test_df$colb),c)
-setNames(unlist(out['c',], use.names = F), rep(names(out['c',]), lengths(out['c',])))
 
 
 
