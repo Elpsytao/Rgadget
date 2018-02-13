@@ -12,8 +12,9 @@ listby2col <- function(x, formula = ~., fun){
   outer <- formula[[3]][[2]]
   inner <- formula[[3]][[3]]
   factor <- formula[[2]]
+  funcs <- match.fun(fun)
   temp_tbl <- tapply(eval(factor, envir = x), 
-         list(eval(outer, envir = x), eval(inner, envir = x)),fun)
+         list(eval(outer, envir = x), eval(inner, envir = x)),funcs)
   outer <- unique(as.character(eval(outer, envir = x)))
   out_list <- list()
   for(i in seq_along(outer)){
@@ -23,6 +24,7 @@ listby2col <- function(x, formula = ~., fun){
   }
   out_list
 }
+
 
 
 
