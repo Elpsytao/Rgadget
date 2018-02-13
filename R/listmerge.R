@@ -3,10 +3,9 @@
 #' Two catagorized columns will be names of the list and names of each elements in list, values will be values in each element
 #' 
 #' listmerge:
-#' 1. Deal with collapse (multiple namse in a list)
-#' 2. Deal with names match
-#' 3. Keep left/right/both
-#' 4. cpp
+#' 1. Merged list with multiple same name will cause loss of some data
+#' 2. Deal with names match - condition apply
+#' 3. cpp
 
 
 listmerge <- function(x, y, fun, use.names = F, keep = both){
@@ -19,10 +18,6 @@ listmerge <- function(x, y, fun, use.names = F, keep = both){
   names(out) <- both
   out  <- out[names(eval(keep))]
   out
-  # if(keep == 'all'){
-  #   return(out)
-  # } else {
-  #   out  <- out[names(eval(as.name(keep)))]
-  #   return(out)
-  # }
 }
+
+
