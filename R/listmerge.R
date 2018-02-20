@@ -3,10 +3,11 @@
 #' @param x A list to join
 #' @param y A list to join
 #' @param fun A function to apply on same name values after join
+#' @note 
+#' Modifiedw with listnames metehod
 #' @examples
 #' 
 #' 
-
 
 
 listmerge <- function(x, y, fun, use.names = F, keep = both){
@@ -20,5 +21,4 @@ listmerge <- function(x, y, fun, use.names = F, keep = both){
   out  <- out[names(eval(keep))]
   out
 }
-
 
