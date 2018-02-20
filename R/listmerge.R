@@ -1,11 +1,12 @@
-#' Transform dataframe with two catagorized columns and one value column to a list
+#' Merge two single-layer, named-value list
+#'
+#' @param x A list to join
+#' @param y A list to join
+#' @param fun A function to apply on same name values after join
+#' @examples
 #' 
-#' Two catagorized columns will be names of the list and names of each elements in list, values will be values in each element
 #' 
-#' listmerge:
-#' 1. Merged list with multiple same name will cause loss of some data
-#' 2. Deal with names match - condition apply
-#' 3. cpp
+
 
 
 listmerge <- function(x, y, fun, use.names = F, keep = both){
