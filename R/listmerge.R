@@ -6,19 +6,26 @@
 #' @note 
 #' Modifiedw with listnames metehod
 #' @examples
-#' 
-#' 
+# l1 <- list(a = 1,
+#            b = list(x = 3,
+#                     y = list(j = 5,
+#                              k = c(7,8))))
+# l2 <- list(a = 3,
+#            d = 7,
+#            b = list(x = list(list(m = 6,
+#                                   n = 7)),
+#                     y = list(j = 10:11,
+#                              q = 17)))
 
-
-listmerge <- function(x, y, fun, use.names = F, keep = both){
-  if(!is.list(x) || !is.list(y)){
-    stop('Input must be lists.')
+listmerge <- function(.x, .y){
+  x_n <- listnames(.x)
+  y_n <- listnames(.y)
+  out <- .x
+  for(names in unique(c(x_n, y_n))){
+    conponent <- unlist(strsplit(names, '_'))
+    if(!is.list(.x[[conponent]]) & !is.list(.y[[conponent]])){
+      out[[conponent]] <- c(.x[[conponent]], .y[[conponent]])
+    }
   }
-  both <- unique(c(names(x), names(y)))
-  names(both) <- both
-  out <- mapply(c, x[both], y[both])
-  names(out) <- both
-  out  <- out[names(eval(keep))]
   out
 }
-
