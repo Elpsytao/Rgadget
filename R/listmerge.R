@@ -4,7 +4,7 @@
 #' @param y A list to join
 #' @param fun A function to apply on same name values after join
 #' @note 
-#' Modifiedw with listnames metehod
+#' Deal with pune and reduce problems
 #' @examples
 # l1 <- list(a = 1,
 #            b = list(x = 3,
